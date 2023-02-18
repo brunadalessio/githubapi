@@ -32,4 +32,3 @@ A aplicação foi feita com o objetivo de ser minimalista com cores escuras e de
 2. `npm install`
 3. `cd frontend`
 4. `npm start`
-5. `Happy Coding!`
