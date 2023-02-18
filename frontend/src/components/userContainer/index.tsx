@@ -1,9 +1,5 @@
-import { Section } from './styles';
+import { Section } from "./styles";
 
-const UserContainer = (props:any) => (
-    <Section>
-        {props.children}
-    </Section>
-);
+const UserContainer = (props: any) => <Section>{props.children}</Section>;
 
 export default UserContainer;
