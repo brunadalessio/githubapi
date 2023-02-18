@@ -6,7 +6,7 @@ const Error = () => {
     <Container>
       <Title>Usuário não encontrado, tente novamente.</Title>
     </Container>
-  )
+  );
 }
 
-export default Error
+export default Error;

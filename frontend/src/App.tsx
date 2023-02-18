@@ -12,6 +12,7 @@ import clientList from './components/services/clientList';
 import UserModal from './components/userModal';
 
 function App() {
+  
   // Pegar os dados do usuário digitado na pesquisa
   const [user, setUser] = useState<UserProps | null>(null);
   // Listar usuários de acordo com a pesquisa
@@ -41,9 +42,14 @@ function App() {
     <div className="App">
 
         <Container>
+            {/* Header e barra de pesquisa */}
             <Header loadUser={loadUser}/>
+
+            {/* Mensagem de erro, caso não exista usuário*/}
             {error && <Error />}
-            {user ? 
+
+            {/* Renderização do container da consulta */}
+            {user && 
             <UserContainer>
                 <UserPicture url={user?.avatar_url} alt={user?.login}/>
                 <UserDetails name={user?.name} login={user?.login} bio={user?.bio} />
@@ -63,21 +69,22 @@ function App() {
                 >
                 </UserModal>
             </UserContainer>
-            : undefined }
-
+            }
         </Container>
-        {user ?  
+
+        {/* Renderização da lista de possíveis usuários da consulta */}
+        {user &&  
         <MainContainerGrid>
         {userList.map((item, index) => 
-              <UserContainer key={index}>
-                <a href={item.html_url}>
-                  <UserPicture url={item.avatar_url} alt={item.login}/>
-                  <UserDetails login={item.login} url={item.html_url} />
-                </a>
-              </UserContainer>
-              )}
+          <UserContainer key={index}>
+            <a href={item.html_url}>
+              <UserPicture url={item.avatar_url} alt={item.login}/>
+              <UserDetails login={item.login} url={item.html_url} />
+            </a>
+          </UserContainer>
+        )}
         </MainContainerGrid>
-        : undefined}
+        }
     </div>
   );
 }
