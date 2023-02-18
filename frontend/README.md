@@ -14,7 +14,7 @@ O sistema possui testes de automatização, utilizando a ferramenta Cypress (e2e
 * 2 tipos de requisições (Usuário Individual e Lista de Usuários);
 * Tratamento de erros nas requisições das consultas.
 
-A aplicação foi feita com o objetivo de ser minamalisa com cores escuras e detalhes de verde vibrante que dá uma sensação mais moderna, possui também algumas animações suaves na barra de pesquisa e no logo principal.
+A aplicação foi feita com o objetivo de ser minimalista com cores escuras e detalhes de verde vibrante que dá uma sensação mais moderna, possui também algumas animações suaves na barra de pesquisa e no logo principal.
 
 
 ## Tecnologias
