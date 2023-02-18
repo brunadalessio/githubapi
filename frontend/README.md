@@ -12,6 +12,7 @@ O sistema possui testes de automatização, utilizando a ferramenta Cypress (e2e
 
 * Cada módulo da aplicação foi divida em componentes e aplicada na página principal 'App.tsx';
 * 2 tipos de requisições (Usuário Individual e Lista de Usuários);
+* Otimizado para mobile;
 * Tratamento de erros nas requisições das consultas.
 
 A aplicação foi feita com o objetivo de ser minimalista com cores escuras e detalhes de verde vibrante que dá uma sensação mais moderna, possui também algumas animações suaves na barra de pesquisa e no logo principal.
