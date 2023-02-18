@@ -1,4 +1,4 @@
-# GitHub API
+# Github API
 
 Um projeto simples que permite pesquisar usuários do Github usando seu nome de usuário e visualizar seus detalhes de perfil.
 
