@@ -29,6 +29,7 @@ A aplicação foi feita com o objetivo de ser minimalista com cores escuras e de
 ## Instalação
 
 1. `git clone https://github.com/brunadalessio/githubapi-brunadalessio.git`
-2. `npm install`
-3. `cd frontend`
+2. `cd frontend`
+3. `npm install`
 4. `npm start`
+5. `Happy Coding!`

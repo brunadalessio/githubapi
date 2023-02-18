@@ -6,6 +6,7 @@ import UserContainer from './components/userContainer';
 import UserPicture from './components/userPicture';
 import UserDetails from './components/userDetails';
 import { UserProps } from './components/types/User';
+import { UserListProps } from './components/types/UserList';
 import Error from './components/services/Error';
 import client from './components/services/client';
 import clientList from './components/services/clientList';
@@ -15,6 +16,8 @@ function App() {
   
   // Pegar os dados do usuário digitado na pesquisa
   const [user, setUser] = useState<UserProps | null>(null);
+  // Guardar contagem de resultados da consulta
+  const [userCount, setUserCount] = useState<UserListProps | null>(null);
   // Listar usuários de acordo com a pesquisa
   const [userList, setUserList] = useState<any[]>([]);
   // Verificar se o usuário não existe
@@ -31,6 +34,7 @@ function App() {
         const res = await client.get(`/${userName}`);
         const resList = await clientList.get(`users?q=${userName}&per_page=60`);
         setUser(res.data);
+        setUserCount(resList.data);
         setUserList(resList.data.items);
     } catch(err) {
         setError(true);
@@ -73,17 +77,17 @@ function App() {
         </Container>
 
         {/* Renderização da lista de possíveis usuários da consulta */}
-        {user &&  
-        <MainContainerGrid>
-        {userList.map((item, index) => 
-          <UserContainer key={index}>
-            <a href={item.html_url}>
-              <UserPicture url={item.avatar_url} alt={item.login}/>
-              <UserDetails login={item.login} url={item.html_url} />
-            </a>
-          </UserContainer>
-        )}
-        </MainContainerGrid>
+        {userCount?.total_count !== 1 && user &&
+          <MainContainerGrid>
+          {userList.map((item, index) => 
+            <UserContainer key={index}>
+              <a href={item.html_url}>
+                <UserPicture url={item.avatar_url} alt={item.login}/>
+                <UserDetails login={item.login} url={item.html_url} />
+              </a>
+            </UserContainer>
+          )}
+          </MainContainerGrid> 
         }
     </div>
   );

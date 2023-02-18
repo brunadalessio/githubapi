@@ -1,5 +1,5 @@
-export interface UserListProps {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  }
+export type UserListProps = {
+    imcomplete_results: boolean;
+    total_count: number;
+    items: string[];
+};
