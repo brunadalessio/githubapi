@@ -1,28 +1,15 @@
-import Container from './components/container';
+import { useState } from 'react';
+import Container from './components/container/index';
 import MainContainerGrid from './components/container/indexList';
 import Header from './components/header';
 import UserContainer from './components/userContainer';
 import UserPicture from './components/userPicture';
 import UserDetails from './components/userDetails';
-import UserStatistic from './components/userStatistic';
-import { useState } from 'react';
 import { UserProps } from './components/types/User';
+import Error from './components/services/Error';
 import client from './components/services/client';
 import clientList from './components/services/clientList';
-import { AiOutlineClose } from "react-icons/ai";
-import Modal from "react-modal";
-import Error from './components/services/Error';
-
-import { 
-    ModalContainer,
-    ModalOverlay,
-    ModalButton,
-    ModalContent,
-    ModalCloseButton,
-    ModalTitle,
-    ModalSubtitle
-    
-} from './components/userModal/styles';
+import UserModal from './components/userModal';
 
 function App() {
   // Pegar os dados do usuário digitado na pesquisa
@@ -50,18 +37,6 @@ function App() {
     }
   } 
 
-  // Setup do modal para visualizar detalhes do usuário
-  Modal.setAppElement("#root");
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
     <div className="App">
 
@@ -70,42 +45,23 @@ function App() {
             {error && <Error />}
             {user ? 
             <UserContainer>
-
                 <UserPicture url={user?.avatar_url} alt={user?.login}/>
                 <UserDetails name={user?.name} login={user?.login} bio={user?.bio} />
-
-                <ModalContainer>
-                  <ModalButton onClick={openModal}>Mais detalhes</ModalButton>
-                  <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Usuário Modal"
-                    overlayClassName="modal-overlay"
-                    className="modal-content"
-                  >
-                    <ModalOverlay>
-                    <ModalContent>
-                        <a href={user?.html_url}>
-                          <UserPicture url={user?.avatar_url} alt={user?.login}/>
-                        </a>
-                        <ModalTitle>{user?.name}</ModalTitle>
-                        <ModalSubtitle>
-                          @{user?.login}
-                          <br />
-                          {user?.location}
-                          <br />
-                          {user?.email}
-                          <br />
-                          <hr />
-                          <br />
-                          {user?.bio}
-                          </ModalSubtitle>
-                          <UserStatistic repos={user?.public_repos} followers={user?.followers} following={user?.following} />
-                          <ModalCloseButton onClick={closeModal}><AiOutlineClose /></ModalCloseButton>
-                      </ModalContent>
-                    </ModalOverlay>
-                  </Modal>
-                </ModalContainer>
+                
+                {/* Renderização do Modal, quando o botão é clicado */}
+                <UserModal 
+                  name={user?.name} 
+                  login={user?.login} 
+                  bio={user?.bio} 
+                  email={user?.email}
+                  location={user?.location} 
+                  public_repos={user?.public_repos} 
+                  followers={user?.followers}
+                  following={user?.following}
+                  url={user?.avatar_url}
+                  alt={user?.login}
+                >
+                </UserModal>
             </UserContainer>
             : undefined }
 

@@ -31,7 +31,6 @@ export const ModalContent = styled.div`
 
 
 export const ModalButton = styled.button`
-    display: inline-block;
     background-color: #42CBA4;
     color: #14141B;
     padding: 1.25rem 2rem;
