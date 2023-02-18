@@ -29,7 +29,7 @@ function App() {
     //Requisições e verificação de erro
     try {
         const res = await client.get(`/${userName}`);
-        const resList = await clientList.get(`users?q=${userName}`);
+        const resList = await clientList.get(`users?q=${userName}&per_page=60`);
         setUser(res.data);
         setUserList(resList.data.items);
     } catch(err) {
